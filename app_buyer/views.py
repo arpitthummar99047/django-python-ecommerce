@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from app_buyer.models import *
 from app_seller.models import *
 from django.conf import settings
@@ -93,8 +93,6 @@ def home(request):
     return render(request, "home.html",context)
 
 
-def cart(request):
-    return render(request, "cart.html")
 
 def profile(request):
     context = {}
@@ -138,3 +136,18 @@ def shopindex(request):
     context["all_product"]=all_product
     return render(request, "shopindex.html",context)
     
+
+def cart(request,id):
+    current_product=Product.objects.get(id=id)
+    current_user=User.objects.get(email=request.session["email"])
+    cart_exists=Cart.objects.filter(product=current_product,user=current_user)
+    # print(cart_exists)
+    if cart_exists:
+        cart_exists[0].quantity+=1
+        cart_exists[0].save()
+    else:
+        Cart.objects.create(
+        product=current_product,
+        user=current_user
+        )
+    return redirect("shophome")

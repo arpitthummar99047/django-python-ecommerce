@@ -20503,5 +20503,6 @@ body.coming-soon-page .header {
 }
 
 .loginbutton:hover {
-  color: #0dcaf0;
+  color: #222222;
+  background-color: #fff;
 }

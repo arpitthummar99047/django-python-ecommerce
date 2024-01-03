@@ -89,7 +89,7 @@
                 <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
                 <span class="pc__img-next"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></span>
               </div>
-              <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+              <a href="{% url 'cart' one_data.id%}" class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase" title="Add To Cart">Add To Cart</a>
             </div>
 
             <div class="pc__info position-relative">
