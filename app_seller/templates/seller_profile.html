@@ -1,0 +1,126 @@
+{% extends "seller_base.html" %} {% block content %} {% load static %}
+
+<main>
+
+<div class="aside-header d-flex align-items-center">
+  <h3 class="text-uppercase fs-3 mb-0 text1">seller Profile page</h3>
+</div>
+
+<div>
+  <h6 class="red">{{msg}}</h6>
+</div>
+
+<form action="{% url 'seller_profile'%}" method="POST" name="account_edit_form" class="needs-validation" novalidate enctype="multipart/form-data">
+<div class="profile1">
+  <div class="profilimage">
+    <img src="{{seller_data.sellerprofile_pic.url}}" alt="" class="profileimg" /> <br>
+    <input type="file" value="Enter image" name="propic">
+    <div class="aside-header d-flex align-items-center" >
+      <div  class="text-uppercase fs-4 mb-0">username : {{seller_data.username}}</div>
+    </div>
+    <div class="aside-header d-flex align-items-center" >
+    <div class="text-uppercase fs-4 mb-0">email : {{seller_data.email}}</div>
+  </div>
+    
+  </div>
+
+  <div class="col-lg-9">
+    <div class="page-content my-account__edit">
+      <div class="d-flex align-items-center">
+        <h3 class="text-uppercase text1 editprofile">Edit Profile form</h3>
+      </div>
+        <div class="my-account__edit-form">
+          
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="account_display_name"
+                    placeholder="Display Name"
+                    value="{{seller_data.username}}"
+                    name="username"
+                  />
+                  <label for="account_display_name">Username</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="account_email"
+                    placeholder="Email Address"
+                    value="{{seller_data.email}}"
+                    name="email"
+                    
+                  />
+                  <label for="account_email">Email Address</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="my-3">
+                  <h5 class="text-uppercase mb-0">Password Change</h5>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="account_current_password"
+                    placeholder="Current password"
+                    name="opassword"
+                  
+                  />
+                  <label for="account_current_password">Current password</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="account_new_password"
+                    placeholder="New password"
+                    name="npassword"
+                    
+                  />
+                  <label for="account_new_password">New password</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating my-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    cfpwd
+                    data-cf-pwd="#account_new_password"
+                    id="account_confirm_password"
+                    placeholder="Confirm new password"
+                    name="cnpassword"
+              
+                  />
+                  <label for="account_confirm_password"
+                    >Confirm new password</label
+                  >
+                  <div class="invalid-feedback">Passwords did not match!</div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="my-3">
+                  <button class="btn btn-primary">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+{% endblock %}
