@@ -151,3 +151,12 @@ def cart(request,id):
         user=current_user
         )
     return redirect("shophome")
+
+def viwe_cart(request):
+    context = {}
+    user_data=User.objects.get(email=request.session["email"])
+    context["user_data"]=user_data
+    cart_product=Cart.objects.all()
+    context["cart_product"]=cart_product
+    return render(request,"cart.html",context)
+    
