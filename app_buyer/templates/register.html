@@ -14,6 +14,7 @@
          <div class="form-floating mb-4">
             <input name="username" type="text" class="form-control form-control_gray" id="registerUserNameInput" placeholder="Username" required>
             <label for="registerUserNameInput">Username</label>
+            <div id="usernameerror" style="color: red;">{{usernameerror}}</div>
           </div>
 
           <div class="pb-1"></div>
@@ -21,7 +22,7 @@
           <div class="form-floating mb-4">
             <input name="email" type="email" class="form-control form-control_gray" id="registerUserEmailInput" placeholder="user@company.com" required>
             <label for="registerUserEmailInput">Email address *</label>
-            <div id="emailError" style="color: red;"></div>
+            <div id="emailError" style="color: red;">{{emailerror}}</div>
 
           </div>
 
@@ -35,8 +36,7 @@
           <div class="form-label-fixed mb-4">
             <label for="confirmPasswordInput" class="form-label">Confirm Password *</label>
             <input name="confirmPassword" id="confirmPasswordInput" class="form-control form-control_gray" type="password" placeholder="*******" />
-            {% comment %} <div id="passwordError" style="color: red;"></div> {% endcomment %}
-            {{pass}}
+            <div id="passwordError" style="color: red;">{{pass}}</div>
           </div>
           
           

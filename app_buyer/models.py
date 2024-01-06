@@ -15,10 +15,11 @@ class User(models.Model):
     
 
 class Cart(models.Model):
-    product=models.ForeignKey(Product,on_delete=models.CASCADE)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    quantity=models.IntegerField(default=1)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Product", related_name="cart_items")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User", related_name="cart_items")
+    quantity = models.IntegerField(default=1)
+
 
     def __str__(self):
-        return self.product.pname    
+        return "{} - {}".format(self.product.pname, self.quantity)   
     

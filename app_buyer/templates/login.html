@@ -8,7 +8,7 @@
         <h3 class="text-uppercase fs-3 mb-0 text1">Log in</h3>
         </div>
         <div>
-          <h6 class="red">{{msg}}</h6>
+          <div id="emailError" style="color: red;">{{loginsucc}}</div>
         </div>
         <form action="{% url 'login' %}" method="POST" class="aside-content">
         {% csrf_token %}
@@ -24,6 +24,7 @@
           <label for="customerNameEmailInput"
             >email address *</label
           >
+          <div id="emailError" style="color: red;">{{invaliduser}}</div>
         </div>
 
         <div class="pb-3"></div>
@@ -40,7 +41,9 @@
             placeholder="********"
             required
           />
+          <div id="emailError" style="color: red;">{{incorectpass}}</div>
         </div>
+
 
         <div class="d-flex align-items-center mb-3 pb-2">
           <div class="form-check mb-0">

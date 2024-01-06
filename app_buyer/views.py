@@ -18,30 +18,36 @@ def register(request):
     if request.method == "POST":
         try:
             user_exist = User.objects.get(email=request.POST["email"])
-            context["msg"] = "User Already Exists,pls try to login"
+            context["emailerror"] = "User Already Exists,pls try to login"
+            return render(request, "register.html", context)
             
-        except:
-            if request.POST["password"] == request.POST["confirmPassword"]:
-                global otp
-                otp = random.randint(100000, 999999)
+        except User.DoesNotExist:
+            try:
+                # Check if username already exists
+                user_exist_username = User.objects.get(username=request.POST["username"])
+                context["usernameerror"] = "Username already exists, please choose a different one"
+                return render(request, "register.html", context)
+            except User.DoesNotExist:
+                if request.POST["password"] == request.POST["confirmPassword"]:
+                    global otp
+                    otp = random.randint(100000, 999999)
+                    subject = 'OTP Verification code'
+                    message = f'Thanks for choosing us, your OTP is: {otp}'
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [request.POST["email"], ]
 
-                subject = 'OTP Verification code'
-                message = f'Thanks for choosing us, your OTP is: {otp}'
-                email_from = settings.EMAIL_HOST_USER
-                recipient_list = [request.POST["email"], ]
+                    send_mail(subject, message, email_from, recipient_list)
 
-                send_mail(subject, message, email_from, recipient_list)
-
-                global user_data
-                user_data = {
-                    "username": request.POST["username"], 
-                    "email": request.POST["email"],
-                    "password": request.POST["password"],
-                }
-                return render(request, "otp.html")
-            else:
-                context["pass"] = "Passwords do not match"
-
+                    global user_data
+                    user_data = {
+                        "username": request.POST["username"], 
+                        "email": request.POST["email"],
+                        "password": request.POST["password"],
+                        }
+                    return render(request, "otp.html")
+                else:
+                    context["pass"] = "Passwords do not match"
+                    
     return render(request, "register.html", context)
 
 def otp(request):
@@ -68,15 +74,15 @@ def login(request):
         try:
             current_user = User.objects.get(email=request.POST["email"])
             if check_password(request.POST["password"], current_user.password):
-                context["msg"] = "Login Successfull"
+                context["loginsucc"] = "Login Successfull"
                 request.session["email"]=request.POST["email"]
                 user_data=User.objects.get(email=request.session["email"])
                 context["user_data"]=user_data
                 return render(request, "index.html",context)
             else:
-                context["msg"] = "Incorrect password"
+                context["incorectpass"] = "Incorrect password"
         except:
-            context["msg"] = "Invalid User"
+            context["invaliduser"] = "Invalid User"
 
     return render(request, "login.html", context)
 
@@ -156,7 +162,7 @@ def viwe_cart(request):
     context = {}
     user_data=User.objects.get(email=request.session["email"])
     context["user_data"]=user_data
-    cart_product=Cart.objects.all()
-    context["cart_product"]=cart_product
+    cart_product = Cart.objects.filter(user=user_data)
+    context["cart_product"] = cart_product
     return render(request,"cart.html",context)
     

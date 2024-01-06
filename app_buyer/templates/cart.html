@@ -28,12 +28,12 @@
             <input
               type="number"
               name="quantity"
-              value="1"
+              value="{{cart_item.quantity}}"
               min="1"
               class="qty-control__number border-0 text-center"
             />
-            <div>{{cart_item.quantity}}</div>
             <div class="qty-control__reduce text-start">-</div>
+
             <div class="qty-control__increase text-end">+</div>
           </div>
           <span class="cart-drawer-item__price money price"
