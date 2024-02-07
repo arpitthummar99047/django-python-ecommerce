@@ -1,0 +1,116 @@
+/* Add this CSS to your existing styles or create a new CSS file */
+
+.profilemain {
+  padding: 20px;
+}
+
+.form-container {
+  margin-top: 20px;
+}
+
+.profile1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profilimage {
+  text-align: center;
+}
+
+.profileimg {
+  max-width: 300px; /* Adjust the width as needed */
+  max-height: 300px; /* Adjust the height as needed */
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile2 {
+  width: 65%;
+}
+
+.editprofile {
+  margin-bottom: 20px;
+}
+
+.my-account__edit-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-floating {
+  position: relative;
+}
+
+.form-floating input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.form-floating label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: #495057;
+  background-color: #fff;
+  padding: 0 5px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+  transform: translateY(-70%);
+  font-size: 12px;
+  color: #007bff;
+}
+
+.savechange {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.savechange:hover {
+  background-color: #0056b3;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  margin-top: 5px;
+}
+
+/* Add more styles as needed */
+
+@media (max-width: 767px) {
+  .profilemain {
+    padding: 10px;
+  }
+
+  .profile1 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile2 {
+    width: 100%;
+  }
+
+  .aside-header {
+    text-align: center;
+  }
+
+  .profilimage {
+    margin-bottom: 20px;
+  }
+}

@@ -33,7 +33,7 @@
               <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3">New Trend</h6>
               <h2 class="text-uppercase h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Summer Sale Stylish</h2>
               <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-5">Womens</h2>
-              <a href="#" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7">Discover More</a>
+              <a href="{% url 'shopindex' %}" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-7">Discover More</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <h6 class="text_dash text-uppercase text-red fs-base fw-medium animate animate_fade animate_btt animate_delay-3">Summer 2020</h6>
               <h2 class="text-uppercase h1 fw-bold animate animate_fade animate_btt animate_delay-3">Hello New Season</h2>
               <h6 class="text-uppercase mb-5 animate animate_fade animate_btt animate_delay-3">Limited Time Offer - Up to 60% off & Free Shipping</h6>
-              <a href="#" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3">Discover More</a>
+              <a href="{% url 'shopindex' %}" class="btn-link btn-link_lg default-underline text-uppercase fw-medium animate animate_fade animate_btt animate_delay-3">Discover More</a>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
               <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
                 <p class="text-uppercase mb-1">Hot List</p>
                 <h3 class="text-uppercase"><strong>Women</strong> Collection</h3>
-                <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
               </div>
              </div>
           </div>
@@ -112,7 +112,7 @@
               <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
                 <p class="text-uppercase mb-1">Hot List</p>
                 <h3 class="text-uppercase"><strong>Men</strong> Collection</h3>
-                <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
               </div>
             </div>
             <div class="position-relative flex-grow-1 mt-lg-1">
@@ -123,7 +123,7 @@
                     <div class="content_abs content_bottom content_left content_bottom-md content_left-md">
                       <p class="text-uppercase mb-1">Hot List</p>
                       <h3 class="text-uppercase"><strong>Kids</strong> Collection</h3>
-                      <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+                      <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
                     </div
                   </div>
                 </div>
@@ -149,12 +149,16 @@
             <div class="col-6 col-md-4 col-lg-3">
               <div class="product-card mb-3 mb-md-4 mb-xxl-5">
                 <div class="pc__img-wrapper">
-                  <a href="product1_simple.html">
+                  <a href="{% url 'pro_view' id=one_data.id%}">
                     <img loading="lazy" src="{{one_data.image.url}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                     <img loading="lazy" src="{{one_data.image.url}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
                   </a>
-                  <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                </div>
+                  <a
+                  href="{% url 'login'%}"
+                  class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase"
+                  title="Add To Cart"
+                  >Add To Cart</a
+                ></div>
 
                 <div class="pc__info position-relative">
                   <p class="pc__category">{{one_data.pname}}</p>
@@ -180,12 +184,11 @@
               </div>
             </div>
             {% endfor %}  
-
           </div>
-          <div class="text-center mt-2">
-            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="{% url 'shopindex' %}">Discover More</a>
-          </div>
-        </div>
+                    <div class="text-center mt-2">
+                        <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="{% url 'shopindex' %}">Discover More</a>
+                      </div>
+                    </div>
 
         <div class="tab-pane fade show" id="collections-tab-2" role="tabpanel" aria-labelledby="collections-tab-2-trigger">
           <div class="row">
@@ -423,7 +426,7 @@
             </div>
           </div>
           <div class="text-center mt-2">
-            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="#">Discover More</a>
+            <a class="btn-link btn-link_lg default-underline text-uppercase fw-medium" href="{% url 'shopindex' %}">Discover More</a>
           </div>
         </div>
 
@@ -651,7 +654,7 @@
         <div class="deal-timer__content pb-2 mb-3 pb-xl-5 mb-xl-3 mb-xxl-5">
           <p class="text_dash text-uppercase text-red fw-medium">Deal of the week</p>
           <h3 class="h1 text-uppercase"><strong>Spring</strong> Collection</h3>
-          <a href="#" class="btn-link default-underline text-uppercase fw-medium mt-3">Shop Now</a>
+          <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase fw-medium mt-3">Shop Now</a>
         </div>
 
         <div class="position-relative d-flex align-items-center text-center pt-xxl-4 js-countdown" data-date="18-12-2023" data-time="06:50">
@@ -689,7 +692,7 @@
             <div class="content_abs content_bottom content_left content_bottom-lg content_left-lg">
               <h6 class="text-uppercase text-white fw-medium mb-3">Starting At $19</h6>
               <h3 class="text-white mb-3">Women's T-Shirts</h3>
-              <a href="#" class="btn-link default-underline text-uppercase text-white fw-medium">Shop Now</a>
+              <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase text-white fw-medium">Shop Now</a>
             </div>
           </div>
         </div>
@@ -700,7 +703,7 @@
             <div class="content_abs content_bottom content_left content_bottom-lg content_left-lg">
               <h6 class="text-uppercase fw-medium mb-3">Starting At $39</h6>
               <h3 class="mb-3">Men's Sportswear</h3>
-              <a href="#" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
+              <a href="{% url 'shopindex' %}" class="btn-link default-underline text-uppercase fw-medium">Shop Now</a>
             </div>
           </div>
         </div>
@@ -752,19 +755,24 @@
             }
           }'>
           <div class="swiper-wrapper">
+            {% for one_data in all_product %}
             <div class="swiper-slide product-card">
               <div class="pc__img-wrapper">
                 <a href="product1_simple.html">
-                  <img loading="lazy" src="{%static '/images/home/demo1/product-0-1.jpg' %}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
+                  <img loading="lazy" src="{{one_data.image.url}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                 </a>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-              </div>
+                <a
+                  href="{% url 'login'%}"
+                  class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase"
+                  title="Add To Cart"
+                  >Add To Cart</a
+                > </div>
 
               <div class="pc__info position-relative">
-                <p class="pc__category">Dresses</p>
-                <h6 class="pc__title"><a href="product1_simple.html">Hub Accent Mirror</a></h6>
+                <p class="pc__category">{{one_data.pname}}</p>
+                <h6 class="pc__title"><a href="product1_simple.html">{{one_data.discription}}</a></h6>
                 <div class="product-card__price d-flex">
-                  <span class="money price">$17</span>
+                  <span class="money price">${{one_data.price}}</span>
                 </div>
 
                 <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
@@ -772,80 +780,8 @@
                 </button>
               </div>
             </div>
-
-            <div class="swiper-slide product-card">
-              <div class="pc__img-wrapper">
-                <a href="product1_simple.html">
-                  <img loading="lazy" src="{%static '/images/home/demo1/product-1-1.jpg' %}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                </a>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-              </div>
-
-              <div class="pc__info position-relative">
-                <p class="pc__category">Dresses</p>
-                <h6 class="pc__title"><a href="product1_simple.html">Hosking Blue Area Rug</a></h6>
-                <div class="product-card__price d-flex">
-                  <span class="money price">$29</span>
-                </div>
-                <div class="product-card__review d-flex align-items-center">
-                  <div class="reviews-group d-flex">
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                    <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg"><use href="#icon_star" /></svg>
-                  </div>
-                  <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
-                </div>
-
-                <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                </button>
-              </div>
-            </div>
-
-            <div class="swiper-slide product-card">
-              <div class="pc__img-wrapper">
-                <a href="product1_simple.html">
-                  <img loading="lazy" src="{%static '/images/home/demo1/product-2-1.jpg' %}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                </a>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-              </div>
-
-              <div class="pc__info position-relative">
-                <p class="pc__category">Dresses</p>
-                <h6 class="pc__title"><a href="product1_simple.html">Hanneman Pouf</a></h6>
-                <div class="product-card__price d-flex">
-                  <span class="money price">$62</span>
-                </div>
-
-                <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                </button>
-              </div>
-            </div>
-
-            <div class="swiper-slide product-card">
-              <div class="pc__img-wrapper">
-                <a href="product1_simple.html">
-                  <img loading="lazy" src="{%static '/images/home/demo1/product-3-1.jpg' %}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
-                </a>
-                <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-              </div>
-
-              <div class="pc__info position-relative">
-                <p class="pc__category">Dresses</p>
-                <h6 class="pc__title"><a href="product1_simple.html">Cushion Futon Slipcover</a></h6>
-                <div class="product-card__price d-flex">
-                  <span class="money price">$62</span>
-                </div>
-
-                <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                </button>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
+           </div>
         </div>
         <div class="products-carousel__prev position-absolute top-50 d-flex align-items-center justify-content-center">
           <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_md" /></svg>
@@ -863,66 +799,13 @@
       <h2 class="section-title text-uppercase text-center mb-4 pb-xl-2 mb-xl-4">@UOMO</strong></h2>
 
       <div class="row row-cols-3 row-cols-md-4 row-cols-xl-6">
+        {% for one_data in all_product %}
         <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta1.jpg' %}" width="230" height="230" alt="Insta image 1">
+          <a href="#" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
+            <img loading="lazy" class="instagram__img" src="{{one_data.image.url}}" width="230" height="230" alt="Insta image 1">
           </a>
         </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta2.jpg' %}" width="230" height="230" alt="Insta image 2">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta3.jpg' %}" width="230" height="230" alt="Insta image 3">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta4.jpg' %}" width="230" height="230" alt="Insta image 4">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta5.jpg' %}" width="230" height="230" alt="Insta image 5">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta6.jpg' %}" width="230" height="230" alt="Insta image 6">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta7.jpg' %}" width="230" height="230" alt="Insta image 7">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta8.jpg' %}" width="230" height="230" alt="Insta image 8">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta9.jpg' %}" width="230" height="230" alt="Insta image 9">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta10.jpg' %}" width="230" height="230" alt="Insta image 10">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta11.jpg' %}" width="230" height="230" alt="Insta image 11">
-          </a>
-        </div>
-        <div class="instagram__tile">
-          <a href="https://instagram.com/" target="_blank" class="position-relative overflow-hidden d-block effect overlay-plus">
-            <img loading="lazy" class="instagram__img" src="{%static '/images/instagram/insta12.jpg' %}" width="230" height="230" alt="Insta image 12">
-          </a>
-        </div>
+        {% endfor %}
       </div>
     </section>
 

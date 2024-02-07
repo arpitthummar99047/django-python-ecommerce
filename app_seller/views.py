@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from app_seller.models import *
+from django.db.models import Q
 from django.conf import settings
 from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
+from django.db import IntegrityError
+from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password, check_password
 import random
 
@@ -118,21 +122,95 @@ def seller_profile(request):
     return render(request, "seller_profile.html",context)
 
 
-def seller_addproduct(request):
+def seller_addproduct(request, product_id=None):
     context = {}
-    seller_data=Seller.objects.get(email=request.session["email"])
-    context["seller_data"]=seller_data
-    if request.method=="POST":
-        user_exists=Seller.objects.get(email=request.session["email"])
-        Product.objects.create(
-            pname=request.POST["pname"],
-            price=request.POST["price"],
-            image=request.FILES["productpic"],
-            discription=request.POST["desc"],
-            user=user_exists)
-        context["msg"]="Product add succesfully"
-    return render(request, "seller_addproduct.html",context)
-                              
+    
+    # Get the seller data based on the session email
+    seller_data = Seller.objects.get(email=request.session["email"])
+    context["seller_data"] = seller_data
+
+    # Check if default categories already exist for the current user
+    default_categories = ["Cloths", "Toys", "Home & Kitchen"]
+    for category_name in default_categories:
+        existing_category = Category.objects.filter(
+            cname__iexact=category_name, user=seller_data
+        ).first()
+        if not existing_category:
+            Category.objects.create(cname__iexact=category_name, user=seller_data)
+
+    # Fetch all available categories
+    all_categories = Category.objects.filter(user=seller_data)
+    context["categories"] = all_categories
+
+    if request.method == "POST":
+        user_exists = Seller.objects.get(email=request.session["email"])
+        # Convert category_id to an integer
+        category_id = int(request.POST["category"])
+
+        if category_id == 0:
+            # User wants to add a new category
+            new_category_name = request.POST.get("new_category_name").strip()
+            # Check if a category with the same name already exists for the current seller
+            existing_category = Category.objects.filter(
+                cname__iexact=new_category_name, user=user_exists
+            ).first()
+            if existing_category:
+                context["msg"] = "Category already exists."
+                return render(request, "seller_addproduct.html", context)
+
+            new_category_description = request.POST.get("new_category_description")
+
+            # Create a new category and associate it with the current user
+            new_category = Category.objects.create(
+                cname=new_category_name,
+                cdescription=new_category_description,
+                user=user_exists
+            )
+            # Use the newly created category for the product
+            category = new_category
+        else:
+            # User selected an existing category
+            try:
+                category = Category.objects.get(id=category_id, user=user_exists)
+            except Category.DoesNotExist:
+                # Handle the case where the selected category doesn't exist
+                context["msg"] = "Selected category does not exist."
+                return render(request, "seller_addproduct.html", context)
+
+        # Check if product_id is provided for updating
+        if product_id:
+            # Update existing product
+            product = Product.objects.get(id=product_id)
+            product.pname = request.POST["pname"]
+            product.price = request.POST["price"]
+            product.image = request.FILES["productpic"]
+            product.description = request.POST["desc"]
+            product.category = category
+            product.save()
+            context["msg"] = "Product updated successfully"
+        else:
+            # Create new product
+            Product.objects.create(
+                pname=request.POST["pname"],
+                price=request.POST["price"],
+                image=request.FILES["productpic"],
+                discription=request.POST["desc"],
+                category=category,
+                user=user_exists
+            )
+            context["msg"] = "Product added successfully"
+
+    return render(request, "seller_addproduct.html", context)
+
+
+
+
+
+
+
+
+
+
         
             
         

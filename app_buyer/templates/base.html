@@ -32,7 +32,9 @@
     href="{% static 'css/plugins/swiper.min.css' %}"
     type="text/css"
   />
+
   <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
  
@@ -923,9 +925,9 @@
 
         {% else %}
 
-          <a href="{% url 'login' %}" class="w-100 text-uppercase navigation__item">Signin</a>
+          
       
-          <a href="{% url 'register'%}" class="loginbutton navigation__item w-100 text-uppercase">SignUp</a>
+          <a href="{% url 'register'%}" class="loginbutton navigation__item w-100 text-uppercase">Register</a>
         
 
          {% endif %}

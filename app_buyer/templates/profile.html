@@ -12,8 +12,9 @@
 
 <div class="form-container ">
 <form action="{% url 'profile'%}" method="POST" name="account_edit_form" class="needs-validation" novalidate enctype="multipart/form-data">
+  {% csrf_token %}
 <div class="profile1">
-  <div class="profilimage">
+  <div class="profilimage"> 
     <img src="{{user_data.profile_pic.url}}" alt="" class="profileimg" /> <br>
     <input type="file" value="Enter image" name="propic">
     <div class="aside-header d-flex align-items-center" >
@@ -32,7 +33,6 @@
       </div>
         <div class="my-account__edit-form">
           
-            {% csrf_token %}
             <div class="row">
               <div class="col-md-12">
                 <div class="form-floating my-3">
@@ -47,20 +47,7 @@
                   <label for="account_display_name">Username</label>
                 </div>
               </div>
-              <div class="col-md-12">
-                <div class="form-floating my-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="account_email"
-                    placeholder="Email Address"
-                    value="{{user_data.email}}"
-                    name="email"
-                    
-                  />
-                  <label for="account_email">Email Address</label>
-                </div>
-              </div>
+              
               <div class="col-md-12">
                 <div class="my-3">
                   <h5 class="text-uppercase mb-0">Password Change</h5>
@@ -112,7 +99,13 @@
               </div>
               <div class="col-md-12">
                 <div class="my-3">
-                  <button class="btn btn-primary">Save Changes</button>
+                  <div class="mobile_fixed-btn_wrapper">
+                    <div class="button-wrapper container">
+                      <button class="btn btn-primary btn-checkout">
+                        SAVE CHANGE
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

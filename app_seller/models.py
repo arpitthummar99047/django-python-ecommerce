@@ -13,20 +13,32 @@ class Seller(models.Model):
         return self.username
     
 class Category(models.Model):
-    cname=models.CharField(max_length=200)
-    cdiscription=models.TextField(max_length=200)
+    cname=models.CharField(max_length=200, unique=True, help_text="Category name (case-insensitive)")
+    cdescription=models.TextField(max_length=200, null=True, blank=True)
     user=models.ForeignKey(Seller,on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.cname
+   
+    class Meta:
+        unique_together = ['cname', 'user']
+         
+    def save(self, *args, **kwargs):
+        self.cname = self.cname.lower()
+        super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.cname.lower()    
+
+    
 class Product(models.Model):
     pname=models.CharField(max_length=200)
     price=models.IntegerField()
     image=models.FileField(upload_to="product/")
     discription=models.TextField(max_length=500)    
     user=models.ForeignKey(Seller,on_delete=models.CASCADE)
-    category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=True,null=True)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.pname
+    
+    @property
+    def category_name(self):
+        return self.category.cname

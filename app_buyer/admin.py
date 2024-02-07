@@ -5,3 +5,4 @@ from app_buyer.models import *
 
 admin.site.register(User)
 admin.site.register(Cart)
+admin.site.register(Orderdetail)
